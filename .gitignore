@@ -1,6 +1,6 @@
+echo .DS_Store >> .gitignore
 node_modules
 .parcel-cache
 dist
 package-lock.json
 .gitignore
-.DS_Store
