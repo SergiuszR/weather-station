@@ -1,0 +1,21 @@
+{
+  "name": "weather-station",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.0.0-beta3",
+    "live-server-https": "^0.0.2",
+    "parcel": "^2.0.0-beta.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.15"
+  }
+}

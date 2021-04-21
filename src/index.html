@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Station</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <section class="forecast">
+        <div class="header">
+          <h1 class="header-head">Weather Station</h1>
+          <span class="header-span"><p>Powered by OpenWeather API</p></span>
+        </div>
+        <div class="forecast__main">
+          <div class="upper">
+            <div class="forecast__main--temperature">
+              <div class="forecast__main--temperature-left">
+                <div class="temp-indicator">
+                  <span class="actual-temp" id="actual-temp"></span>
+                  <span class="actual-clouds" id="actual-clouds"></span>
+                </div>
+              </div>
+              <div class="forecast__main--temperature-right">
+                <div class="temperatures">
+                  <div class="temperatures__lowest">
+                    <h4>L:</h4>
+                    <h4 id="lowest-temp"></h4>
+                  </div>
+                  <div class="temperatures__highest">
+                    <h4>H:</h4>
+                    <h4 id="highest-temp"></h4>
+                  </div>
+                </div>
+                <div class="station-desc">
+                  <span class="nearest-station"
+                    ><p>stacja pomiarowa</p>
+                    <p></p
+                  ></span>
+                  <h4><span class="station-city" id="station-city"></span></h4>
+                </div>
+              </div>
+            </div>
+            <div class="forecast__main--pressure">
+              <div class="pressure-indicator">
+                <span class="actual-pressure" id="actual-pressure"></span>
+                <span class="press-unit">hPa</span>
+              </div>
+            </div>
+          </div>
+          <div class="lower">
+            <div class="forecast__main--wind">
+              <div class="wind-indicator">
+                <span class="actual-wind" id="actual-wind"></span>
+                <span class="wind-unit">m/s</span>
+              </div>
+            </div>
+            <div class="forecast__main--airq">
+              <div class="forecast__main--airq-left">
+                <div class="airq-indicator">
+                  <span class="actual-airq" id="actual-airq"></span>
+                  <span class="airq-unit">aqi</span>
+                </div>
+              </div>
+              <div class="forecast__main--airq-right">
+                  <div class="airq-pm10">
+                    <div class="airq-pm10-indicator">
+                      <div class="pm10-indicator">
+                        <span class="pm10-indicator-lead">pm10</span>
+                      </div>
+                    </div>
+                    <div class="pm10-actual" id="pm10-actual"></div>
+                    <div class="pm10-norm" id="pm10-norm"></div>
+                  </div>
+                  <div class="airq-pm25">
+                    <div class="air-pm25-indicator">
+                      <div class="pm25-indicator">
+                        <span class="pm25-indicator-lead">pm2.5</span>
+                      </div>
+                    </div>
+                    
+                    <div class="pm25-actual" id="pm25-actual"></div>
+                    <div class="pm25-norm" id="pm25-norm"></div>
+                  </div>
+                  <div class="airq-so2">
+                    <div class="air-so2-indicator">
+                      <div class="so2-indicator">
+                        <span class="so2-indicator-lead">SO2</span>
+                      </div>
+                    </div>
+                    <div class="so2-actual" id="so2-actual"></div>
+                    <div class="so2-norm" id="so2-norm"></div>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
