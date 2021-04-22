@@ -15,3 +15,4 @@
 If you wanto clone this repository, go ahead, but please go to [OpenWeather API](https://openweathermap.org/api) and obtain your own `api key`.
 It's totally free of charge! (Current Weather, One Call & Air Pollution)
 
+![Weather Station](https://i.imgur.com/u4BdoW8.png)
