@@ -5,6 +5,10 @@
   --big-shadow: 5px 5px 11px #262626, -5px -5px 11px #3a3a3a;
   --medium-shadow: inset 5px 5px 10px #191919, inset -5px -5px 10px #474747;
   --small-shadow: inset 4px 4px 9px #191919, inset -4px -4px 9px #474747;
+  --width: 280px;
+  --height: 280px;
+  --value-size: 5rem;
+  --unit-size: 2rem;
 }
 
 * {
@@ -15,20 +19,20 @@
 
 body {
   background-color: white;
-  font-family: Montserrat;
+  font-family: Nunito;
   user-select: none;
-}
-
-.container-fluid {
-  background-color: var(--bg-color);
-  height: 100vh;
+  background: var(--bg-color);
 }
 
 .forecast {
   height: 100vh;
-  background: var(--bg-color);
+  width: 100%;
+  max-width: 1440px;
+  margin: auto !important;
+  background: transparent;
   display: grid;
   place-items: center;
+  padding: 0 20px !important;
 }
 
 .header {
@@ -40,6 +44,7 @@ body {
   letter-spacing: 3.3px;
   text-shadow: 2px 1px 0 #000, 2px 2px 2px rgba(206, 89, 55, 0);
   font-weight: 700;
+  font-size: clamp(4vw, 3vw, 4vw);
 }
 
 .header-span {
@@ -55,54 +60,44 @@ body {
 }
 
 .forecast__main {
-  width: 620px;
-  margin: auto !important;
-  display: flex;
-  flex-flow: column nowrap;
-  height: 500px;
-  position: relative;
-  left: 0;
-  top: 1%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0px 0px;
+  /* grid-template-areas: "temp wind" "hpa aqi"; */
+  width: 100%;
+  height: 70%;
+  gap: 16px;
 }
 
 .forecast__main > div {
-  display: flex;
-  flex-flow: row nowrap;
-  width: 100%;
-  height: 220px;
-  align-items: center;
-  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.082);
+
+  padding: 10px !important;
 }
 
-.forecast__main .upper > div:nth-child(1) {
-  height: 200px;
-  width: 400px;
+.forecast__main > div:nth-child(1) {
+  flex-flow: column;
   border-radius: 16px;
   flex-shrink: 0;
   background: var(--bg-color);
   box-shadow: var(--big-shadow);
 }
 
-.forecast__main .upper > div:nth-child(2) {
-  height: 200px;
-  width: 200px;
+.forecast__main > div:nth-child(2) {
   border-radius: 16px;
   flex-shrink: 0;
   background: var(--bg-color);
   box-shadow: var(--big-shadow);
 }
-.forecast__main .lower > div:nth-child(1) {
-  height: 200px;
-  width: 200px;
+.forecast__main > div:nth-child(3) {
   border-radius: 16px;
   flex-shrink: 0;
   background: var(--bg-color);
   box-shadow: var(--big-shadow);
 }
 
-.forecast__main .lower > div:nth-child(2) {
-  height: 200px;
-  width: 400px;
+.forecast__main > div:nth-child(4) {
+  flex-flow: column;
   border-radius: 16px;
   flex-shrink: 0;
   background: var(--bg-color);
@@ -124,6 +119,7 @@ body {
   flex: 1;
   display: flex;
   flex-flow: column nowrap;
+  padding: 0 20px !important;
 }
 
 .forecast__main--temperature-right > div {
@@ -135,11 +131,12 @@ body {
   flex-flow: column;
   justify-content: space-evenly;
   padding: 20px 0 !important;
+  gap: 8px;
 }
 
 .temp-indicator {
-  width: 156px;
-  height: 156px;
+  width: var(--width);
+  height: var(--height);
   border-radius: 50%;
   position: relative;
   background: var(--bg-color);
@@ -149,7 +146,9 @@ body {
 .temperatures__lowest {
   display: flex;
   flex-flow: row;
-  width: 60%;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.082);
+  background: rgba(255, 255, 255, 0.021);
 }
 
 .temperatures__lowest > h4:nth-child(1) {
@@ -160,13 +159,19 @@ body {
 .temperatures__lowest > h4:nth-child(2) {
   color: white;
   font-weight: 600;
+  font-size: 1.4rem;
+  padding: 8px !important;
 }
 
 .temperatures__highest {
   color: white;
   font-weight: 600;
   display: flex;
-  width: 60%;
+  width: 100%;
+  font-size: 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.082);
+  padding: 8px !important;
+  background: rgba(255, 255, 255, 0.021);
 }
 
 .temperatures__highest > h4:nth-child(1) {
@@ -184,7 +189,7 @@ body {
 
 .station-city {
   font-style: italic;
-  font-weight: 200;
+  font-weight: 500;
 }
 
 .station-desc {
@@ -196,6 +201,7 @@ body {
 .station-desc > h4:nth-child(2) {
   color: white;
   font-style: italic;
+  font-size: 1.3rem;
 }
 
 .actual-temp {
@@ -203,7 +209,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 50px;
+  font-size: var(--value-size);
   color: white;
   font-weight: bold;
 }
@@ -213,7 +219,7 @@ body {
   bottom: 5%;
   left: 50%;
   transform: translate(-50%, 0);
-  font-size: 10px;
+  font-size: 16px;
   color: white;
   font-weight: bold;
 }
@@ -226,8 +232,8 @@ body {
 }
 
 .forecast__main--pressure .pressure-indicator {
-  width: 156px;
-  height: 156px;
+  width: var(--width);
+  height: var(--height);
   border-radius: 50%;
   position: relative;
   background: var(--bg-color);
@@ -240,13 +246,13 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 50px;
+  font-size: var(--value-size);
   color: white;
   font-weight: bold;
 }
 
 .press-unit {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #ffffff29;
   font-weight: 600;
   position: absolute;
@@ -256,7 +262,7 @@ body {
 }
 
 .wind-unit {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #ffffff29;
   font-weight: 600;
   position: absolute;
@@ -273,8 +279,8 @@ body {
 }
 
 .forecast__main--wind .wind-indicator {
-  width: 156px;
-  height: 156px;
+  width: var(--width);
+  height: var(--height);
   border-radius: 50%;
   position: relative;
   background: var(--bg-color);
@@ -286,13 +292,13 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 50px;
+  font-size: var(--value-size);
   color: white;
   font-weight: bold;
 }
 
 .forecast__main--wind .actual-wind .wind-unit {
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 /* Air Quality */
@@ -308,12 +314,15 @@ body {
 }
 
 .forecast__main--airq-right > div {
-  flex: 1;
+  flex: 0;
+  padding: 8px !important;
 }
 
 .forecast__main--airq-right {
   display: flex;
   flex-flow: column nowrap;
+  padding: 0 20px !important;
+  justify-content: center;
 }
 
 .forecast__main--airq {
@@ -322,8 +331,8 @@ body {
 }
 
 .airq-indicator {
-  width: 156px;
-  height: 156px;
+  width: var(--width);
+  height: var(--height);
   border-radius: 50%;
   position: relative;
   background: var(--bg-color);
@@ -335,13 +344,13 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 50px;
+  font-size: var(--value-size);
   color: white;
   font-weight: bold;
 }
 
 .airq-unit {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #ffffff29;
   text-transform: uppercase;
   font-weight: 600;
@@ -388,7 +397,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 50px;
+  font-size: var(--value-size);
   color: white;
   font-weight: bold;
   font-size: 0.65rem;
@@ -413,7 +422,7 @@ body {
 }
 
 .pm-unit {
-  font-size: 0.7rem;
+  font-size: 0.4rem;
 }
 
 .airq-pm10,
@@ -427,7 +436,7 @@ body {
 .so2-actual {
   color: white;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .pm10-norm,
