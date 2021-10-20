@@ -25,6 +25,13 @@ window.addEventListener("load", () => {
   let windBorder = document.querySelector(".wind-indicator");
   let units = `µg/m³`;
 
+  console.log(document.querySelector(".forecast__main--temperature"));
+
+  const getBrowserLocale = () =>
+    navigator.language ||
+    navigator.browserLanguage ||
+    (navigator.languages || ["en"])[0];
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       lon = position.coords.longitude;
@@ -50,6 +57,8 @@ window.addEventListener("load", () => {
           lowestTemp.innerHTML = Math.ceil(min) + "°c";
           highestTemp.innerHTML = Math.floor(max) + "°c";
 
+          console.log(data.daily);
+
           if (pressure > 1013) {
             pressureBorder.style.border = "4px solid #00cc55";
           } else {
@@ -63,6 +72,59 @@ window.addEventListener("load", () => {
           } else {
             tempBorder.style.border = "4px solid #bf0404";
           }
+
+          const forr = document.querySelector("#forr");
+
+          data.daily.forEach((daily) => {
+            const { clouds, dt, rain } = daily;
+            const { min, max } = daily.temp;
+
+            console.log(daily);
+
+            let day = new Date(dt * 1000).toLocaleDateString(
+              getBrowserLocale()
+            );
+            console.log(day);
+
+            const dailyEl = document.createElement("div");
+            let cloudsDaily = document.createElement("div");
+            let lowTempDaily = document.createElement("div");
+            let highTempDaily = document.createElement("div");
+            let dayTime = document.createElement("div");
+            let rainDaily = document.createElement("div");
+
+            rainDaily.classList.add("rain-daily");
+            dayTime.classList.add("day-time");
+            lowTempDaily.classList.add("low-temp-daily");
+            highTempDaily.classList.add("high-temp-daily");
+            cloudsDaily.classList.add("clouds-daily");
+            dailyEl.classList.add("daily-weather");
+
+            rain != null
+              ? (rainDaily.style.display = "block")
+              : (rainDaily.style.display = "none");
+
+            if (max < 13) {
+              dailyEl.style.border = "4px solid #0082ec";
+            } else if (max >= 13 && max < 30) {
+              dailyEl.style.border = "4px solid #dcab38";
+            } else {
+              dailyEl.style.border = "4px solid #bf0404";
+            }
+
+            dailyEl.appendChild(dayTime);
+            dailyEl.appendChild(cloudsDaily);
+            dailyEl.appendChild(lowTempDaily);
+            dailyEl.appendChild(highTempDaily);
+            dailyEl.appendChild(rainDaily);
+            dayTime.innerHTML = new Date(dt * 1000).toLocaleDateString("pl-PL");
+            cloudsDaily.innerHTML = `Clouds: ${clouds}%`;
+            lowTempDaily.innerHTML = `L: ${Math.floor(min) + "°c"}`;
+            highTempDaily.innerHTML = `H: ${Math.floor(max) + "°c"}`;
+            rainDaily.innerHTML = `Rain: ${Math.floor(rain) + "mm"}`;
+
+            forr.appendChild(dailyEl);
+          });
         });
 
       fetch(api2)
